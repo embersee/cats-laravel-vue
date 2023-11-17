@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\BreedController;
+use App\Http\Controllers\CatController;
+use App\Http\Controllers\CatImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// API Routes for Cat operations
+Route::apiResource('cats', CatController::class);
+
+Route::get('/cat-image', [CatImageController::class, 'fetch']);
+
+// API Routes for Breed operations
+Route::apiResource('breeds', BreedController::class);
+

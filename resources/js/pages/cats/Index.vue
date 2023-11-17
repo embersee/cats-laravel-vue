@@ -1,14 +1,13 @@
 <template>
-    <Heading title="Каталог кошек">
+    <Heading title="Таблица Кошек">
         <el-button @click="CreateCat">Добавить</el-button>
     </Heading>
 
-    <CatsList />
+    <CatsTable />
 </template>
 <script>
-import CatsList from '../components/cats/list.vue'
-import Heading from '../components/ui/heading.vue'
-
+import CatsTable from '../../components/cats/table.vue'
+import Heading from '../../components/ui/heading.vue'
 export default {
     methods: {
         CreateCat() {
@@ -17,7 +16,7 @@ export default {
     },
     components: {
         Heading,
-        CatsList
+        CatsTable
     }
 }
 </script>

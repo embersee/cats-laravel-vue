@@ -4,14 +4,18 @@
             <span class="text-large font-600 mr-3"> Добавить новую кошку </span>
         </template>
     </el-page-header>
-    <el-container class="p-4"> hi </el-container>
+
+    <div class="p-4">
+        <CreateForm />
+    </div>
 </template>
 
 <script lang="ts" setup>
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router'
+import CreateForm from '../../components/cats/create-form.vue'
 
-const router = useRouter();
+const router = useRouter()
 const goBack = () => {
-    router.back();
-};
+    router.back()
+}
 </script>

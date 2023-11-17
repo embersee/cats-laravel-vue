@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
-import laravel from 'laravel-vite-plugin';
+import { defineConfig } from 'vite'
+import laravel from 'laravel-vite-plugin'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -10,13 +10,13 @@ export default defineConfig({
         vue(),
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.js'],
-            refresh: true,
+            refresh: true
         }),
         AutoImport({
-            resolvers: [ElementPlusResolver()],
+            resolvers: [ElementPlusResolver()]
         }),
         Components({
-            resolvers: [ElementPlusResolver()],
-        }),
-    ],
-});
+            resolvers: [ElementPlusResolver()]
+        })
+    ]
+})
