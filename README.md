@@ -34,7 +34,6 @@ $ composer install && npm install
 ### Шаг 4. Запустите [Laravel Sail](https://laravel.com/docs/10.x/sail#installing-sail-into-existing-applications)
 Убедитесь, что docker-desktop запущен.
 ```shell
-$ composer install
 $ sail up
 ```
 или
