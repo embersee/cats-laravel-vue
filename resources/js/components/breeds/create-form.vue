@@ -5,18 +5,18 @@
         label-width="120px"
         class="flex flex-col mx-auto max-w-lg"
     >
-        <el-form-item label="Breed Name">
+        <el-form-item label="Порода">
             <el-input v-model="breedForm.name"></el-input>
         </el-form-item>
 
-        <el-form-item label="Description">
+        <el-form-item label="Описание">
             <el-input
                 type="textarea"
                 v-model="breedForm.description"
             ></el-input>
         </el-form-item>
 
-        <el-form-item label="Average Life Expectancy">
+        <el-form-item label="Средняя продолжительность жизни">
             <el-input-number
                 v-model="breedForm.average_life_expectancy"
                 :min="0"
@@ -24,9 +24,7 @@
         </el-form-item>
 
         <el-form-item>
-            <el-button type="primary" @click="submitForm"
-                >Create Breed</el-button
-            >
+            <el-button type="primary" @click="submitForm">Создать</el-button>
         </el-form-item>
     </el-form>
 </template>
@@ -46,11 +44,11 @@ export default defineComponent({
         const submitForm = async () => {
             try {
                 await axios.post('/api/breeds', breedForm.value)
-                alert('Breed created successfully!')
-                // Additional success handling (e.g., reset the form or navigate away)
+                alert('Порода создана успешно!')
+                // Дополнительная обработка успеха (например, сброс формы или redirect)
             } catch (error) {
                 console.error('Error creating breed:', error)
-                alert('Error occurred while creating the breed.')
+                alert('Произошла ошибка при создании породы.')
             }
         }
 

@@ -5,9 +5,9 @@
         </template>
     </el-page-header>
 
-    <div class="p-4">
+    <el-container class="p-4">
         <CreateForm />
-    </div>
+    </el-container>
 </template>
 
 <script lang="ts" setup>

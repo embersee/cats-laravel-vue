@@ -2,7 +2,6 @@
     <el-menu
         mode="horizontal"
         :ellipsis="false"
-        @select="handleSelect"
         router
         :default-active="$route.path"
     >
@@ -21,8 +20,4 @@
     </el-menu>
 </template>
 
-<script lang="ts" setup>
-const handleSelect = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
-}
-</script>
+<script lang="ts" setup></script>

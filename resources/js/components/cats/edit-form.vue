@@ -12,24 +12,25 @@
                 fit="cover"
                 v-loading="isLoadingImage"
             />
-            <el-button @click="fetchCatImage">Fetch New Image</el-button>
+
+            <el-button @click="fetchCatImage">Новое изображение</el-button>
         </div>
         <div>
-            <el-form-item label="Cat Name">
+            <el-form-item label="Имя">
                 <el-input v-model="catForm.name"></el-input>
             </el-form-item>
 
-            <el-form-item label="Age">
+            <el-form-item label="Возраст">
                 <el-input-number
                     v-model="catForm.age"
                     :min="0"
                 ></el-input-number>
             </el-form-item>
 
-            <el-form-item label="Breed">
+            <el-form-item label="Порода">
                 <el-select
                     v-model="catForm.breed_id"
-                    placeholder="Select a breed"
+                    placeholder="Выберите породу"
                 >
                     <el-option
                         v-for="breed in breeds"
@@ -43,7 +44,7 @@
 
             <el-form-item>
                 <el-button type="primary" @click="updateCat"
-                    >Update Cat</el-button
+                    >Обновить кота</el-button
                 >
             </el-form-item>
         </div>
@@ -75,8 +76,8 @@ export default defineComponent({
                 const response = await axios.get(`/api/cats/${props.catId}`)
                 catForm.value = response.data
             } catch (error) {
-                console.error('Error fetching cat data:', error)
-                alert('Error occurred while fetching cat data.')
+                console.error('Ошибка при получении данных о кошке:', error)
+                alert('Произошла ошибка при получении данных о кошке.')
             }
         }
 
@@ -85,19 +86,18 @@ export default defineComponent({
                 const response = await axios.get('/api/breeds')
                 breeds.value = response.data
             } catch (error) {
-                console.error('Error fetching breeds:', error)
-                alert('Error occurred while fetching breeds.')
+                console.error('Ошибка при получении пород:', error)
+                alert('Произошла ошибка при получении данных пород.')
             }
         }
 
         const updateCat = async () => {
             try {
                 await axios.put(`/api/cats/${props.catId}`, catForm.value)
-                alert('Cat updated successfully!')
-                // Additional success handling (e.g., redirecting)
+                alert('Кот успешно обновился!')
             } catch (error) {
-                console.error('Error updating cat:', error)
-                alert('Error occurred while updating the cat.')
+                console.error('Ошибка обновления кота:', error)
+                alert('Произошла ошибка при обновлении кота.')
             }
         }
 
@@ -109,8 +109,8 @@ export default defineComponent({
                 const response = await axios.get('/api/cat-image')
                 catForm.value.image = response.data.url
             } catch (error) {
-                console.error('Error fetching cat image:', error)
-                alert('Error occurred while fetching the cat image.')
+                console.error('Ошибка при получении изображения кошки:', error)
+                alert('Произошла ошибка при получении изображения кошки.')
             } finally {
                 isLoadingImage.value = false
             }

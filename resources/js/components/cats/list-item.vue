@@ -7,13 +7,13 @@
         />
         <div>
             <h3 class="text-lg font-semibold mb-1">{{ cat.name }}</h3>
-            <p class="text-sm text-gray-600">Breed: {{ cat.breed.name }}</p>
-            <p class="text-sm text-gray-600">Age: {{ cat.age }} years</p>
+            <p class="text-sm text-gray-600">Порода: {{ cat.breed.name }}</p>
+            <p class="text-sm text-gray-600">Возраст: {{ cat.age }} years</p>
         </div>
         <el-button-group class="mt-2 self-end">
-            <el-button @click="editCat(cat.id)">Edit</el-button>
+            <el-button @click="editCat(cat.id)">Редакт.</el-button>
             <el-button type="danger" @click="deleteCat(cat.id)"
-                >Delete</el-button
+                >Удалить</el-button
             >
         </el-button-group>
     </el-card>
@@ -45,16 +45,16 @@ export default defineComponent({
             this.$router.push({ name: 'EditCat', params: { id: catId } })
         },
         deleteCat(catId) {
-            if (confirm('Are you sure you want to delete this cat?')) {
+            if (confirm('Вы уверен что вы хотите удалить эту кошку?')) {
                 axios
                     .delete(`/api/cats/${catId}`)
                     .then(() => {
                         this.$emit('catDeleted', catId)
-                        alert('Cat deleted successfully')
+                        alert('Кошка успешно удалена')
                     })
                     .catch((error) => {
-                        console.error('Error deleting cat:', error)
-                        alert('Error occurred while deleting the cat.')
+                        console.error('Ошибка при удалении:', error)
+                        alert('Ошибка произошла при удалении кошки.')
                     })
             }
         }

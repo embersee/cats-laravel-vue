@@ -5,18 +5,18 @@
         label-width="120px"
         class="flex flex-col mx-auto w-1/2 max-w-lg"
     >
-        <el-form-item label="Breed Name">
+        <el-form-item label="Порода">
             <el-input v-model="breedForm.name"></el-input>
         </el-form-item>
 
-        <el-form-item label="Description">
+        <el-form-item label="Описание">
             <el-input
                 type="textarea"
                 v-model="breedForm.description"
             ></el-input>
         </el-form-item>
 
-        <el-form-item label="Average Life Expectancy">
+        <el-form-item label="Средняя продолжительность жизни">
             <el-input-number
                 v-model="breedForm.average_life_expectancy"
                 :min="0"
@@ -24,9 +24,7 @@
         </el-form-item>
 
         <el-form-item>
-            <el-button type="primary" @click="submitForm"
-                >Update Breed</el-button
-            >
+            <el-button type="primary" @click="submitForm">Обновить</el-button>
         </el-form-item>
     </el-form>
 </template>
@@ -42,8 +40,6 @@ interface Breed {
     average_life_expectancy: number
 }
 
-import { watch } from 'vue'
-
 export default defineComponent({
     props: {
         breedId: {
@@ -58,30 +54,23 @@ export default defineComponent({
             average_life_expectancy: 0
         })
 
-        watch(breedForm, (newVal) => {
-            console.log('Form data changed:', newVal)
-        })
-
         const fetchBreedData = async () => {
             try {
                 const response = await axios.get(`/api/breeds/${props.breedId}`)
                 breedForm.value = response.data
-
-                console.log('form: ', JSON.stringify(breedForm))
-                console.log('resp: ', JSON.stringify(response.data))
             } catch (error) {
                 console.error('Error fetching breed data:', error)
-                alert('Error occurred while fetching breed data.')
+                alert('Произошла ошибка при получении данных о породе.')
             }
         }
 
         const submitForm = async () => {
             try {
                 await axios.put(`/api/breeds/${props.breedId}`, breedForm.value)
-                alert('Breed updated successfully!')
+                alert('Порода успешно обновлена!')
             } catch (error) {
                 console.error('Error updating breed:', error)
-                alert('Error occurred while updating the breed.')
+                alert('Произошла ошибка при обновлении породы.')
             }
         }
 

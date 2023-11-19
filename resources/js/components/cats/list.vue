@@ -42,10 +42,7 @@ export default defineComponent({
                     this.cats = response.data
                 })
                 .catch((error) => {
-                    console.error(
-                        'There was an error fetching the cats: ',
-                        error
-                    )
+                    console.error('Произошла ошибка при запросе: ', error)
                 })
         },
         removeCatFromList(catId) {

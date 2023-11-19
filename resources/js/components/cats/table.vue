@@ -5,30 +5,30 @@
         border
         :row-class-name="getAgeCellStyle"
     >
-        <el-table-column prop="name" label="Cat Name"></el-table-column>
-        <el-table-column label="Age">
+        <el-table-column prop="name" label="Имя"></el-table-column>
+        <el-table-column label="Возраст">
             <template #default="scope">
                 <div>
                     {{ scope.row.age }}
                 </div>
             </template>
         </el-table-column>
-        <el-table-column label="Breed">
+        <el-table-column label="Порода">
             <template #default="scope">
                 {{ scope.row.breed.name }}
             </template>
         </el-table-column>
 
-        <el-table-column label="Actions" width="150">
+        <el-table-column label="Действия" width="200">
             <template #default="scope">
                 <el-button size="small" @click="editCat(scope.row.id)"
-                    >Edit</el-button
+                    >Редакт</el-button
                 >
                 <el-button
                     size="small"
                     type="danger"
                     @click="deleteCat(scope.row.id)"
-                    >Delete</el-button
+                    >Удалить</el-button
                 >
             </template>
         </el-table-column>
@@ -50,10 +50,14 @@ export default defineComponent({
                 cats.value = response.data
             } catch (error) {
                 console.error('Error fetching cats:', error)
-                alert('Error occurred while fetching cats.')
+                alert('Произошла ошибка при загрузке кошек.')
             }
         }
 
+        /**
+         * Подсвечивает записи в таблице возраст которых приближается
+         * к средней продолжительности жизни породы
+         */
         const getAgeCellStyle = ({ row }) => {
             const ageRatio = row.age / row.breed.average_life_expectancy
             if (ageRatio >= 0.8) {
@@ -64,23 +68,24 @@ export default defineComponent({
             }
             return ''
         }
+
         const editCat = (catId) => {
             router.push({ name: 'EditCat', params: { id: catId } })
         }
 
         const deleteCat = (catId) => {
-            if (confirm('Are you sure you want to delete this cat?')) {
+            if (confirm('Вы уверены, что хотите удалить этого кота?')) {
                 axios
                     .delete(`/api/cats/${catId}`)
                     .then(() => {
                         cats.value = cats.value.filter(
                             (cat) => cat.id !== catId
                         ) // Remove cat from list
-                        alert('Cat deleted successfully')
+                        alert('Кот успешно удален!')
                     })
                     .catch((error) => {
                         console.error('Error deleting cat:', error)
-                        alert('Error occurred while deleting the cat.')
+                        alert('Произошла ошибка при удалении кота.')
                     })
             }
         }

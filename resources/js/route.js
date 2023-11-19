@@ -39,6 +39,10 @@ const router = createRouter({
             name: 'EditBreed',
             component: () => import('./pages/breeds/Edit.vue'),
             props: true
+        },
+        {
+            path: '/:pathMatch(.*)*',
+            component: () => import('./pages/Error.vue')
         }
     ]
 })

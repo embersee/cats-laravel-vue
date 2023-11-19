@@ -1,27 +1,27 @@
 <template>
     <div>
         <el-table :data="breeds" class="w-full" border>
-            <el-table-column prop="name" label="Breed Name"></el-table-column>
+            <el-table-column prop="name" label="Порода"></el-table-column>
             <el-table-column
                 prop="description"
-                label="Description"
+                label="Описание"
             ></el-table-column>
             <el-table-column
                 prop="average_life_expectancy"
-                label="Average Life Expectancy"
+                label="Средняя продолжительность жизни"
             ></el-table-column>
 
-            <el-table-column label="Actions" width="150">
+            <el-table-column label="Actions" width="200">
                 <template #default="scope">
                     <el-button size="small" @click="editBreed(scope.row.id)">
-                        Edit
+                        Редакт.
                     </el-button>
                     <el-button
                         size="small"
                         type="danger"
                         @click="deleteBreed(scope.row)"
                     >
-                        Delete
+                        Удалить
                     </el-button>
                 </template>
             </el-table-column>
@@ -45,7 +45,7 @@ export default defineComponent({
                 breeds.value = response.data
             } catch (error) {
                 console.error('Error fetching breeds:', error)
-                alert('Error occurred while fetching breeds.')
+                alert('Произошла ошибка при получении пород.')
             }
         }
 
@@ -56,7 +56,7 @@ export default defineComponent({
         const deleteBreed = (breed) => {
             if (
                 confirm(
-                    `Are you sure you want to delete breed "${breed.name}"?`
+                    `Вы уверены что хотите удалить породу "${breed.name}" и всех кошек с этой породой?`
                 )
             ) {
                 axios
@@ -65,11 +65,11 @@ export default defineComponent({
                         breeds.value = breeds.value.filter(
                             (b) => b.id !== breed.id
                         )
-                        alert('Breed deleted successfully')
+                        alert('Порода успешно удалена')
                     })
                     .catch((error) => {
                         console.error('Error deleting breed:', error)
-                        alert('Error occurred while deleting the breed.')
+                        alert('Произошла ошибка при удалении породы.')
                     })
             }
         }
