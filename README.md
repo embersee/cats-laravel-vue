@@ -19,36 +19,57 @@ $ git clone https://github.com/embersee/cats-laravel-vue.git
 $ cd cat-laravel-vue
 ```
 
-### Шаг 2. Запустите [Laravel Sail](https://laravel.com/docs/10.x/sail#installing-sail-into-existing-applications)
+### Шаг 2: Настройка среды
+Скопируйте файл .env.example, чтобы создать файл .env:
+```shell
+$ cp .env.example .env
+```
+
+### Шаг 3: Установка Зависимостей
+Установите зависимости PHP и Node через Composer и npm:
+```shell
+$ composer install && npm install
+```
+
+### Шаг 4. Запустите [Laravel Sail](https://laravel.com/docs/10.x/sail#installing-sail-into-existing-applications)
 Убедитесь, что docker-desktop запущен.
 ```shell
+$ composer install
 $ sail up
 ```
 или
 ```shell
 $ ./vendor/bin/sail up
 ```
-
-### Шаг 3: Настройка среды
-Скопируйте файл .env.example, чтобы создать файл .env:
-```shell
-$ cp .env.example .env
-```
-### Шаг 4. Генерируйте данные базы данных
+### Step 5: Генерируйте данные базы данных
 Автоматически сидируется записи БД с 10 кошками и 5 породами.
 ```shell
+$ sail artisan migrate
 $ sail artisan db:seed
 ```
-### Шаг 5: Запуск Vue
+
+Всякий раз, когда изображение добавляется в базу данных, оно сохраняется в папке /storage/app/public. Чтобы связать его с папкой /public, запустите:
+```shell
+$ sail artisan storage:link
+```
+
+### Шаг 6: Запуск Vue
 Приложение будет доступно по адресу http://localhost.
 ```shell
 $ npm run dev
+```
+
+## Использование
+### Запуск тестов:
+```shell
+$ sail artisan test
 ```
 Чтобы остановить Sail, вы можете использовать:
 
 ```shell
 $ sail down
 ```
+
 ---
 # Cats + Laravel + Vue
 Test task on creating a SPA using Laravel, Vue 3, Element Plus.
@@ -69,7 +90,19 @@ $ git clone https://github.com/embersee/cats-laravel-vue.git
 $ cd cats-laravel-vue 
 ```
 
-### Step 2: Start [Laravel Sail](https://laravel.com/docs/10.x/sail#installing-sail-into-existing-applications)
+### Step 2: Set Up Environment
+Copy the .env.example file to create a .env file:
+```shell 
+$ cp .env.example .env
+```
+
+### Step 3: Install Dependencies
+Install PHP & Node dependencies through Composer and npm:
+```shell
+$ composer install && npm install
+```
+
+### Step 4: Start [Laravel Sail](https://laravel.com/docs/10.x/sail#installing-sail-into-existing-applications)
 Make sure docker-desktop is running.
 ```shell
 $ sail up
@@ -79,22 +112,29 @@ or
 $ ./vendor/bin/sail up
 ```
 
-### Step 3: Set Up Environment
-Copy the .env.example file to create a .env file:
-```shell 
-$ cp .env.example .env
-```
-### Step 4: Generate database seeder data
+### Step 5: Generate database seeder data
 ```shell
+$ sail artisan migrate
 $ sail artisan db:seed
 ```
-### Step 5: Running Vue
+
+Whenever an image is added to the db it will save to /storage/app/public folder, to link it to the /public folder, run:
+```shell
+$ sail artisan storage:link
+```
+
+### Step 6: Running Vue
 The application will be accessible at http://localhost.
 ```shell 
 $ npm run dev 
 ```
-To stop Sail, you can use:
+## Usage
+### Running Test: 
+```shell
+$ sail artisan test
+```
 
+To stop Sail, you can use:
 ```shell
 $ sail down
 ```
