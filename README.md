@@ -1,5 +1,5 @@
 
-# Cats + Laravel + Vue
+# Cats + Laravel + Vue ([en](#installation) / [ru](#установка))
 
 Тестовое задание на создание SPA используя Laravel, Vue3, ElementPlus.
 
